@@ -16,20 +16,27 @@ $('#todo').append('<li>candy</li>');
 
 // before and after are for siblings
 // append and prepend are for parent
-$('#add').click(addElement)
+$('#add').click(addElement);
 function addElement() {
-  var txt = ""
+  var txt = '';
   // add a new element
-  $('#todo').append('<li>'+ txt + '</li>')
-  
+  $('#todo').append('<li><input type = "text"></li>');
+
   // add a input text box
+  $('input').blur(function () {
+    $(this).parent().addClass('Cool');
+    var items = $(this).val();
+
+    //replace the input box with the text
+    $(this).parent().text(items);
+  });
 
   // whenever the user are done add the element
-
 }
 
 // bind click with the event handler
 $('li').click(changeStyle);
+$('input').click(changeStyle);
 
 //  click the li element will change the changeStyle
 //  three style : complete, cool, hot
@@ -40,6 +47,9 @@ function changeStyle() {
   } else if ($(this).hasClass('complete')) {
     $(this).removeClass('complete');
     $(this).addClass('cool');
+  } else {
+    $(this).removeClass();
+    $(this).addClass('cool');
   }
 }
 
@@ -48,4 +58,5 @@ document.getElementById('remove').addEventListener('click', removeElement);
 
 function removeElement() {
   // remove the marked elements  -- element with style complete
+  $('.complete').remove()
 }
